@@ -12,7 +12,7 @@ const addToStoredDB = (id)=>{
         const storedAppData= getStoredApp();
         
         if(storedAppData.includes(id)) {
-            alert("Installed")
+            // alert("Installed")
         }
         else{
             storedAppData.push(id)

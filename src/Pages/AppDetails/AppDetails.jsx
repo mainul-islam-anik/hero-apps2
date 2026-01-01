@@ -3,6 +3,11 @@ import { useLoaderData, useParams } from 'react-router';
 import BarChart from './Chart';
 import Description from './Description';
 import { addToStoredDB } from '../../Utility/addToDB';
+import { useState } from 'react';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 const AppDetails = () => {
     const {id} = useParams()
@@ -10,9 +15,18 @@ const AppDetails = () => {
     const data = useLoaderData()
     const singleApp = data.find(app => app.id === appId)
     const {image,size, title,downloads,ratingAvg,companyName,reviews}= singleApp;
+    const [isValid, setIsValid] = useState(false);
+    const handleInstall =(id)=>{
+        MySwal.fire({
+  title: "Installed !",
+  text: "You clicked the button!",
+  icon: "success"
+}).then(() => {
+  return 
+})
 
-    const handleInstall = (id)=>{
         addToStoredDB(id)
+        setIsValid(true)
     }
 
     return (
@@ -41,7 +55,7 @@ const AppDetails = () => {
                         <h1 className='font-extrabold text-4xl'>{reviews}</h1>
                     </div>
                 </div>
-                <button onClick={()=>handleInstall(id)} className='btn mt-6 bg-[#00D390] text-white'>Install Now ({size} MB)</button>
+                <button disabled={isValid}  onClick={()=>handleInstall(id)}  className='btn mt-6 bg-[#00D390] text-white'>{isValid? "Installed" : `Install Now (${size} MB)`}</button>
             </div>
             </div>
             <div>

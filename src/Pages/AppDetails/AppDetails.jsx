@@ -32,7 +32,7 @@ const AppDetails = () => {
     return (
         <div className='bg-[#D2D2D2]'>
             <div className='max-w-[1200px] mx-auto pt-20'>
-            <div className='flex gap-10 items-center'>
+            <div className='md:flex gap-10 items-center'>
                 <img className='h-[350px] w-[350px]' src={image} alt="" />
             <div>
                 <h1 className='font-bold text-3xl mb-2'>{title}</h1>
